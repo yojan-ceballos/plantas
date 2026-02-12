@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { products } from '../../../Data/products';
+import { useProducts } from '../../../Context/ProductsContext';
 import { useNavigate } from 'react-router-dom';
 
 const FeaturedProducts: React.FC = () => {
     const navigate = useNavigate();
+    const { products } = useProducts();
     const featured = products.slice(0, 4);
 
     return (

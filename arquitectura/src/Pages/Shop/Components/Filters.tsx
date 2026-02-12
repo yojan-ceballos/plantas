@@ -1,6 +1,6 @@
 import React from 'react';
 import { categories } from '../../../Data/categories';
-import { products } from '../../../Data/products';
+import { useProducts } from '../../../Context/ProductsContext';
 
 interface FiltersProps {
     activeCategory: string;
@@ -8,6 +8,7 @@ interface FiltersProps {
 }
 
 const Filters: React.FC<FiltersProps> = ({ activeCategory, onSelectCategory }) => {
+    const { products } = useProducts();
     // Count products per category
     const allCount = products.length;
     const getCategoryCount = (name: string) => products.filter(p => p.category === name).length;

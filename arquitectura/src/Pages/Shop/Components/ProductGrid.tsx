@@ -2,6 +2,7 @@ import React from 'react';
 import type { Product } from '../../../Data/products';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useCart } from '../../../Context/CartContext';
 
 interface ProductGridProps {
     products: Product[];
@@ -9,6 +10,7 @@ interface ProductGridProps {
 
 const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
     const navigate = useNavigate();
+    const { addToCart } = useCart();
 
     if (products.length === 0) {
         return <div className="shop-empty">No products found in this category.</div>;
@@ -49,7 +51,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({ products }) => {
                             <div className="shop-card__add-overlay">
                                 <button
                                     className="shop-card__add-btn"
-                                    onClick={e => { e.stopPropagation(); }}
+                                    onClick={e => {
+                                        e.stopPropagation();
+                                        addToCart(product);
+                                    }}
                                 >
                                     <span className="material-icons">add_shopping_cart</span>
                                     Add to Cart

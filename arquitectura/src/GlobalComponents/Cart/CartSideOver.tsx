@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { initialCartItems, getCartSubtotal, getCartCount, FREE_SHIPPING_THRESHOLD, type CartItem } from '../../Data/cart';
-import { products } from '../../Data/products';
+import { useProducts } from '../../Context/ProductsContext';
+import { useCart, FREE_SHIPPING_THRESHOLD } from '../../Context/CartContext';
 import './CartSideOver.css';
 
 interface CartSideOverProps {
@@ -10,7 +10,7 @@ interface CartSideOverProps {
 }
 
 const CartSideOver: React.FC<CartSideOverProps> = ({ isOpen, onClose }) => {
-    const [items, setItems] = useState<CartItem[]>(initialCartItems);
+    const { cartItems, removeFromCart, updateQuantity, subtotal, addToCart } = useCart();
 
     // Lock body scroll when open
     useEffect(() => {
@@ -22,24 +22,13 @@ const CartSideOver: React.FC<CartSideOverProps> = ({ isOpen, onClose }) => {
         return () => { document.body.style.overflow = 'unset'; };
     }, [isOpen]);
 
-    const subtotal = getCartSubtotal(items);
-    const cartCount = getCartCount(items);
     const shippingProgress = Math.min((subtotal / FREE_SHIPPING_THRESHOLD) * 100, 100);
     const remaining = Math.max(FREE_SHIPPING_THRESHOLD - subtotal, 0);
 
-    const updateQty = (index: number, delta: number) => {
-        setItems(prev => prev.map((item, i) =>
-            i === index ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item
-        ));
-    };
-
-    const removeItem = (index: number) => {
-        setItems(prev => prev.filter((_, i) => i !== index));
-    };
-
     // Upsell products (not in cart)
-    const cartIds = items.map(i => i.product.id);
-    const upsellProducts = products.filter(p => !cartIds.includes(p.id)).slice(0, 2);
+    const { products: availableProducts } = useProducts();
+    const cartIds = cartItems.map(i => i.product.id);
+    const upsellProducts = availableProducts.filter(p => !cartIds.includes(p.id)).slice(0, 2);
 
     return (
         <AnimatePresence>
@@ -65,7 +54,7 @@ const CartSideOver: React.FC<CartSideOverProps> = ({ isOpen, onClose }) => {
                     >
                         {/* Header */}
                         <div className="cart-drawer__header">
-                            <h2 className="cart-drawer__title">Cart ({cartCount})</h2>
+                            <h2 className="cart-drawer__title">Cart ({cartItems.reduce((acc, item) => acc + item.quantity, 0)})</h2>
                             <button className="cart-drawer__close" onClick={onClose}>
                                 <span className="material-icons">close</span>
                             </button>
@@ -94,7 +83,7 @@ const CartSideOver: React.FC<CartSideOverProps> = ({ isOpen, onClose }) => {
 
                             {/* Items */}
                             <ul className="cart-items">
-                                {items.map((item, index) => (
+                                {cartItems.map((item, index) => (
                                     <motion.li
                                         key={item.product.id}
                                         className="cart-item"
@@ -123,17 +112,17 @@ const CartSideOver: React.FC<CartSideOverProps> = ({ isOpen, onClose }) => {
                                             </div>
                                             <div className="cart-item__bottom">
                                                 <div className="cart-qty">
-                                                    <button className="cart-qty__btn" onClick={() => updateQty(index, -1)}>
+                                                    <button className="cart-qty__btn" onClick={() => updateQuantity(item.product.id, -1)}>
                                                         <span className="material-icons">remove</span>
                                                     </button>
                                                     <span className="cart-qty__value">{item.quantity}</span>
-                                                    <button className="cart-qty__btn" onClick={() => updateQty(index, 1)}>
+                                                    <button className="cart-qty__btn" onClick={() => updateQuantity(item.product.id, 1)}>
                                                         <span className="material-icons">add</span>
                                                     </button>
                                                 </div>
                                                 <button
                                                     className="cart-item__remove"
-                                                    onClick={() => removeItem(index)}
+                                                    onClick={() => removeFromCart(item.product.id)}
                                                 >
                                                     Remove
                                                 </button>
@@ -154,7 +143,7 @@ const CartSideOver: React.FC<CartSideOverProps> = ({ isOpen, onClose }) => {
                                                 <p className="cart-upsell__name">{p.name}</p>
                                                 <div className="cart-upsell__footer">
                                                     <span className="cart-upsell__price">${p.price.toFixed(2)}</span>
-                                                    <button className="cart-upsell__add">
+                                                    <button className="cart-upsell__add" onClick={() => addToCart(p)}>
                                                         <span className="material-icons">add</span>
                                                     </button>
                                                 </div>

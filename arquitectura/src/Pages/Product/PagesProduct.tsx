@@ -4,12 +4,16 @@ import MainLayout from '../../GlobalComponents/Layout/MainLayout';
 import Gallery from './Components/Gallery';
 import ProductInfo from './Components/ProductInfo';
 import RelatedProducts from './Components/RelatedProducts';
-import { products } from '../../Data/products';
+import { useProducts } from '../../Context/ProductsContext';
 import './ProductDetail.css';
 import '../Shop/Shop.css'; /* For shop-card reuse in Related */
 
 const PagesProduct: React.FC = () => {
     const { id } = useParams<{ id: string }>();
+    const { products, loading } = useProducts();
+
+    if (loading) return <div style={{ padding: '5rem', textAlign: 'center' }}>Loading...</div>;
+
     const product = products.find(p => p.id === id);
 
     if (!product) {

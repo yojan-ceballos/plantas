@@ -1,4 +1,4 @@
-import { type Product, products } from './products';
+import { type Product } from './products';
 
 export interface CartItem {
     product: Product;
@@ -6,11 +6,7 @@ export interface CartItem {
     potStyle?: string;
 }
 
-export const initialCartItems: CartItem[] = [
-    { product: products[0], quantity: 1, potStyle: '10" Clay Pot' },
-    { product: products[7], quantity: 2, potStyle: '500ml • Pack of 2' },
-    { product: products[2], quantity: 1, potStyle: '4" Ceramic Pot' },
-];
+export const initialCartItems: CartItem[] = [];
 
 export const getCartSubtotal = (items: CartItem[]): number => {
     return items.reduce((total, item) => total + item.product.price * item.quantity, 0);

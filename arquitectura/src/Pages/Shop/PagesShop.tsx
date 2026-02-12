@@ -2,14 +2,16 @@ import React, { useState, useMemo } from 'react';
 import MainLayout from '../../GlobalComponents/Layout/MainLayout';
 import Filters from './Components/Filters';
 import ProductGrid from './Components/ProductGrid';
-import { products } from '../../Data/products';
+import { useProducts } from '../../Context/ProductsContext';
 import './Shop.css';
 
 const PagesShop: React.FC = () => {
     const [activeCategory, setActiveCategory] = useState('All');
     const [sortBy, setSortBy] = useState('featured');
+    const { products, loading } = useProducts();
 
     const filteredProducts = useMemo(() => {
+        if (loading) return [];
         let result = activeCategory === 'All'
             ? products
             : products.filter(p => p.category === activeCategory);

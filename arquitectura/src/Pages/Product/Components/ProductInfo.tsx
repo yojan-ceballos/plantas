@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useCart } from '../../../Context/CartContext';
 import { type Product } from '../../../Data/products';
 
 interface ProductInfoProps {
@@ -23,6 +24,7 @@ const accordionItems = [
 const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
     const [selectedPot, setSelectedPot] = useState(0);
     const [openAccordion, setOpenAccordion] = useState<number | null>(null);
+    const { addToCart } = useCart();
 
     const potOptions = [
         { name: 'Ceramic White', color: '#f1f5f9' },
@@ -91,7 +93,10 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ product }) => {
 
             {/* CTA */}
             <div className="pdp-actions">
-                <button className="pdp-btn-primary">
+                <button
+                    className="pdp-btn-primary"
+                    onClick={() => addToCart(product)}
+                >
                     <span className="material-icons">shopping_bag</span>
                     Add to Cart — ${product.price.toFixed(2)}
                 </button>
