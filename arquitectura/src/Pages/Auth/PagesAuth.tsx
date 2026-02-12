@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MainLayout from '../../GlobalComponents/Layout/MainLayout';
-import Section from '../../GlobalComponents/UI/Section';
+import Section from '../../GlobalComponents/ui/Section';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import { AnimatePresence } from 'framer-motion';

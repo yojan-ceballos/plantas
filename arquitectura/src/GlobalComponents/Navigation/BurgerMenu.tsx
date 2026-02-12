@@ -24,11 +24,11 @@ const BurgerMenu: React.FC<BurgerMenuProps> = ({ isOpen, onClose }) => {
     const menuVariants = {
         closed: {
             opacity: 0, x: '100%',
-            transition: { duration: 0.3, ease: 'easeInOut', staggerChildren: 0.05, staggerDirection: -1 },
+            transition: { duration: 0.3, ease: 'easeInOut', staggerChildren: 0.05, staggerDirection: -1 } as const,
         },
         open: {
             opacity: 1, x: 0,
-            transition: { duration: 0.4, ease: 'easeOut', staggerChildren: 0.1, delayChildren: 0.2 },
+            transition: { duration: 0.4, ease: 'easeOut', staggerChildren: 0.1, delayChildren: 0.2 } as const,
         },
     };
 

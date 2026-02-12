@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Button from '../../../GlobalComponents/UI/Button';
+import Button from '../../../GlobalComponents/ui/Button';
 import { motion } from 'framer-motion';
 
 interface LoginProps {
