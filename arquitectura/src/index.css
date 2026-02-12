@@ -1,0 +1,140 @@
+/* ============================================================================
+   PROYECTO PLANTILLA – CONFIGURACIÓN GLOBAL DE ESTILOS
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* ========================= TIPOGRAFÍAS ========================= */
+  --font-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-secondary: 'Poppins', 'Montserrat', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+
+  /* ========================= PALETA DE COLORES ========================= */
+  --color-primary: #6d28d9;
+  --color-primary-light: #8b5cf6;
+  --color-primary-dark: #4c1d95;
+
+  --color-secondary: #22c55e;
+  --color-accent: #facc15;
+
+  --color-black: #0f172a;
+  --color-white: #ffffff;
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-700: #334155;
+  --color-gray-900: #0f172a;
+
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+  --color-warning: #f59e0b;
+  --color-info: #0284c7;
+
+  /* ========================= TEXTO ========================= */
+  --text-primary: var(--color-black);
+  --text-secondary: var(--color-gray-500);
+  --text-inverted: var(--color-white);
+  --text-link: var(--color-primary);
+
+  /* ========================= FONDOS ========================= */
+  --bg-body: var(--color-gray-50);
+  --bg-surface: var(--color-white);
+  --bg-muted: var(--color-gray-100);
+
+  /* ========================= SOMBRAS ========================= */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-primary: 0 20px 40px rgba(109, 40, 217, 0.25);
+
+  /* ========================= BORDES ========================= */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-full: 999px;
+
+  /* ========================= BOTONES ========================= */
+  --btn-bg-primary: var(--color-primary);
+  --btn-bg-primary-hover: var(--color-primary-dark);
+  --btn-text-primary: var(--color-white);
+
+  --btn-bg-secondary: var(--color-black);
+  --btn-bg-secondary-hover: #020617;
+  --btn-text-secondary: var(--color-white);
+
+  /* ========================= ANIMACIONES ========================= */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+}
+
+/* ========================= BASE RESET ========================= */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--text-primary);
+  background-color: var(--bg-body);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-gray-300); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gray-400); }
+
+/* Selection */
+::selection {
+  background: var(--color-primary);
+  color: white;
+}

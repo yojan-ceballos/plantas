@@ -1,0 +1,173 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(12px);
+    background: rgba(248, 250, 252, 0.8);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+.navbar--transparent {
+    background: transparent;
+    border-bottom-color: transparent;
+    backdrop-filter: none;
+}
+
+.navbar__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+@media (min-width: 640px) {
+    .navbar__container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .navbar__container {
+        padding: 0 2rem;
+    }
+}
+
+/* Logo */
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.navbar__logo-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.navbar__logo:hover .navbar__logo-icon {
+    transform: rotate(12deg);
+}
+
+.navbar__logo-text {
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: -0.025em;
+    color: var(--color-gray-900);
+}
+
+.navbar--transparent .navbar__logo-text {
+    color: white;
+}
+
+/* Desktop Nav Links */
+.navbar__links {
+    display: none;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .navbar__links {
+        display: flex;
+    }
+}
+
+.navbar__link {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-gray-500);
+    transition: color 0.3s;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+    color: var(--color-primary);
+}
+
+.navbar--transparent .navbar__link {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar--transparent .navbar__link:hover,
+.navbar--transparent .navbar__link--active {
+    color: white;
+}
+
+/* Action Icons */
+.navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar__action-btn {
+    color: var(--color-gray-500);
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.navbar__action-btn:hover {
+    color: var(--color-primary);
+}
+
+.navbar--transparent .navbar__action-btn {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar--transparent .navbar__action-btn:hover {
+    color: white;
+}
+
+/* Cart Badge */
+.navbar__cart-btn {
+    position: relative;
+}
+
+.navbar__cart-badge {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    height: 16px;
+    min-width: 16px;
+    padding: 0 4px;
+    background: var(--color-primary);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile Burger */
+.navbar__burger {
+    display: flex;
+    align-items: center;
+    color: var(--color-gray-500);
+    transition: color 0.3s;
+}
+
+.navbar--transparent .navbar__burger {
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .navbar__burger {
+        display: none;
+    }
+}
