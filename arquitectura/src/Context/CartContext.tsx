@@ -18,7 +18,6 @@ interface CartContextType {
     clearCart: () => void;
     subtotal: number;
     cartCount: number;
-    loading: boolean;
 }
 
 // --- Constants ---
@@ -30,7 +29,6 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
-    const [loading, setLoading] = useState(false);
     const { products, refreshProducts } = useProducts();
 
     // --- Load cart from API on mount ---
@@ -278,7 +276,6 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
             clearCart,
             subtotal,
             cartCount,
-            loading,
         }}>
             {children}
         </CartContext.Provider>
