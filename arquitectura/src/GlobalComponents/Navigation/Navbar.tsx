@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import BurgerMenu from './BurgerMenu';
-import { getCartCount, initialCartItems } from '../../Data/cart';
+import { useCart } from '../../Context/CartContext';
 import './Navbar.css';
 
 interface NavbarProps {
@@ -11,7 +11,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ onCartOpen }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const location = useLocation();
-    const cartCount = getCartCount(initialCartItems);
+    const { cartCount } = useCart();
 
     const navLinks = [
         { path: '/shop', label: 'Shop' },
