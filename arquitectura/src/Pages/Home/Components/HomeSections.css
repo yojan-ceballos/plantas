@@ -374,8 +374,8 @@
     position: absolute;
     bottom: 1rem;
     right: 1rem;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 0.5rem;
+    background: rgba(5, 150, 105, 0.05);
+    /* green-primary 0.05 */
     border-radius: 50%;
     box-shadow: var(--shadow-lg);
     opacity: 0;
@@ -479,7 +479,7 @@
 
 .newsletter__input:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
 }
 
 .newsletter__input::placeholder {
